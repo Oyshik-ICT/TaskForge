@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ("username", "email", "password", "date_joined")
 
-        extra_kwargs = {"password": {"write_only": True}}
+        extra_kwargs = {"password": {"write_only": True}, "date_joined": {"read_only": True}}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,4 +33,4 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ("user", "name", "description", "status", "created_at")
 
-        extra_kwargs = {"user": {"read_only": True}}
+        extra_kwargs = {"user": {"read_only": True}, "created_at": {"read_only": True}}
